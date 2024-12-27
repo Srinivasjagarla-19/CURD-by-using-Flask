@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Password</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            background-image: url(https://t3.ftcdn.net/jpg/07/15/23/68/360_F_715236810_kDGrtaSmkNp1WTZFx0vlzS7GKzfVH1yQ.jpg);
+            background-size: cover;
+            backdrop-filter: blur(15px);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        .update-container {
+            /* backdrop-filter: blur(40px); */
+            background: rgba(0, 0, 0, 0.6);
+            width: 40%;
+            padding: 30px 40px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 3px 6px 39px 15px rgba(0, 0, 0, 1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .update-container:hover {
+            transform: scale(1.02);
+            box-shadow: 5px 10px 50px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: #f0a500;
+        }
+
+        .message {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .message.success {
+            color: #32cd32;
+            font-weight: bold;
+        }
+
+        .message.error {
+            color: #ff4d4d;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            margin: 20px 0;
+            border-spacing: 0 10px;
+        }
+
+        th {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #ffffffcc;
+        }
+
+        td {
+            font-size: 1rem;
+            color: #ffffffa4;
+        }
+
+        input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #fff;
+            border-radius: 15px;
+            background: transparent;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        input[type="password"]:focus {
+            border-color: #ff7f50;
+            outline: none;
+        }
+
+        input[type="submit"],
+        button {
+            margin: 15px 0;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 20px;
+            border: 1px solid #fff;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        input[type="submit"]:hover,
+        button:hover {
+            background-color: #f0a500;
+            color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        a button {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="update-container">
+        <h1>Update Password</h1>
+        {% if msg %}
+        <p class="message {{ msg_type }}">{{ msg }}</p>
+        {% endif %}
+        <a href="{{ url_for('dashboard') }}">
+            <button>Go to Dashboard</button>
+        </a>
+        <form action="{{ url_for('update') }}" method="POST">
+            <table>
+                <tr>
+                    <th>User Name:</th>
+                    <td>{{ session['username'] }}</td>
+                </tr>
+                <tr>
+                    <th>New Password:</th>
+                    <td><input type="password" name="password" placeholder="Enter New Password" required></td>
+                </tr>
+                <tr>
+                    <th>Re-enter Password:</th>
+                    <td><input type="password" name="re_password" placeholder="Re-enter New Password" required></td>
+                </tr>
+            </table>
+            <input type="submit" value="Update">
+        </form>
+    </div>
+</body>
+
+</html>

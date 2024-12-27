@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-image: url(https://t3.ftcdn.net/jpg/07/15/23/68/360_F_715236810_kDGrtaSmkNp1WTZFx0vlzS7GKzfVH1yQ.jpg);
+            background-size: cover;
+            backdrop-filter: blur(10px);
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .form-container {
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 30px 40px;
+            width: 400px;
+            text-align: center;
+            box-shadow: 3px 6px 39px 15px rgba(0, 0, 0, 1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-container:hover{
+            transform: scale(1.02);
+            box-shadow: 5px 10px 50px 20px rgba(0, 0, 0, 0.8);
+        }
+        .form-container h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .form-container input[type="text"], 
+        .form-container input[type="password"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .form-container input[type="submit"] {
+            padding: 10px;
+            background-color: #f0a500;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .form-container input[type="submit"]:hover {
+            background-color: #f0a500;
+        }
+        p{
+            color: red;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .form-container a {
+            display: block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #f0a500;
+            font-size: 15px;
+        }
+        .form-container a:hover {
+            text-decoration: underline;
+        }
+        .message {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .message.success {
+            color: green;
+        }
+        .message.error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1 style="color: #fff;">Sign Up</h1>
+        {% if msg %}
+        <p class="message error">{{ msg }}</p>
+        {% endif %}
+        <form action="{{ url_for('signup') }}" method="POST">
+            <input type="text" name="username" placeholder="Enter Username" required>
+            <input type="password" name="password" placeholder="Enter Password" required>
+            <input type="password" name="repassword" placeholder="Re-enter Password" required>
+            <h2>
+                <input type="submit" value="Sign Up">
+            </h2>
+        </form>
+        <a href="{{ url_for('home') }}">Back to Login</a>
+    </div>
+</body>
+</html> 
