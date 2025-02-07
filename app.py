@@ -15,7 +15,7 @@ mysql = MySQL(app)
 
 @app.route("/")
 def home():
-    return render_template("login.html")
+    return render_template("index.html")
 
 @app.route("/dashboard")
 def dashboard():
@@ -24,8 +24,8 @@ def dashboard():
     else:
         return redirect(url_for("home"))
 
-@app.route("/login", methods=["POST", "GET"])
-def login():
+@app.route("/index", methods=["POST", "GET"])
+def index():
     message = ""
     if request.method == "POST" and "username" in request.form and "password" in request.form:
         username = request.form["username"]
@@ -39,7 +39,7 @@ def login():
             return redirect(url_for("dashboard"))
         else:
             message = "Invalid Username or Password"
-    return render_template("login.html", msg=message)
+    return render_template("index.html", msg=message)
 
 @app.route("/signup", methods=["POST", "GET"])
 def signup():
@@ -65,7 +65,7 @@ def signup():
                 cur.execute("INSERT INTO users (username, password) VALUES (%s, %s)", (username, password))
                 mysql.connection.commit()
                 
-                return redirect(url_for("login"))
+                return redirect(url_for("index"))
     
     return render_template("signup.html", msg=message) 
 
@@ -89,7 +89,7 @@ def update():
             message = "Passwords do not match. Please try again."
             message_type = "error"
     elif "username" not in session:
-        return redirect(url_for("login"))
+        return redirect(url_for("index"))
     return render_template("update.html", msg=message, msg_type=message_type)
 
 
@@ -112,12 +112,12 @@ def delete():
             message = "Successfully deleted your account."
             message_type = "success"
             session.clear()  
-            return redirect(url_for("login", msg=message))
+            return redirect(url_for("index", msg=message))
         else:
             message = "Invalid username or password."
             message_type = "error"
     elif "username" not in session:
-        return redirect(url_for("login"))
+        return redirect(url_for("index"))
     return render_template("delete.html", msg=message, msg_type=message_type)
 
 
