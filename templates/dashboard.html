@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url(https://t3.ftcdn.net/jpg/07/15/23/68/360_F_715236810_kDGrtaSmkNp1WTZFx0vlzS7GKzfVH1yQ.jpg);
+            background-size: cover;
+            backdrop-filter: blur(10px);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        .main {
+            width: 40%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #f0a500;
+            margin-bottom: 20px;
+        }
+
+        .user p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .user h2 {
+            display: inline;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        a {
+            display: inline-block;
+            margin: 10px 0;
+            font-size: 1rem;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #f0a500;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #c97c00;
+            color: #fff;
+        }
+
+        .edit ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .edit ul p {
+            margin-bottom: 10px;
+        }
+
+        .edit ul a {
+            margin-left: 0;
+            display: inline-block;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .main {
+                width: 90%;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            a {
+                font-size: 0.9rem;
+                padding: 8px 15px;
+            }
+        }
+        span{
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1>Welcome to the Dashboard</h1>
+        <div class="user">
+            <p>Hello, <span>{{ user }}</span>!</p>
+        </div>
+        <a href="{{ url_for('logout') }}">Logout</a>
+        <div class="edit">
+            <ul>
+                <p><a href="{{ url_for('update') }}">Edit Your Password</a></p>
+                <p><a href="{{ url_for('delete') }}">Delete Your Account</a></p>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
